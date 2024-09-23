@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {v4 as uuidv4} from 'uuid'
 
 import TodoItem from '../TodoItem'
 
@@ -40,7 +41,10 @@ const initialTodosList = [
 ]
 
 class SimpleTodos extends Component {
-  state = {todoDetailsList: initialTodosList}
+  state = {
+    todoDetailsList: initialTodosList,
+    textInput: '',
+  }
 
   deleteTodo = id => {
     const {todoDetailsList} = this.state
@@ -51,13 +55,44 @@ class SimpleTodos extends Component {
     this.setState({todoDetailsList: updatedTodoList})
   }
 
+  onChangeInputText = event => {
+    this.setState({textInput: event.target.value})
+  }
+
+  onClickAdd = () => {
+    const {textInput} = this.state
+    const newTodo = {
+      id: uuidv4(),
+      title: textInput,
+    }
+    this.setState(prev => ({
+      todoDetailsList: [...prev.todoDetailsList, newTodo],
+    }))
+  }
+
   render() {
-    const {todoDetailsList} = this.state
+    const {todoDetailsList, textInput} = this.state
     return (
       <div className="bg-container">
         <div className="card-container">
           <h1 className="todo-heading">Simple Todos</h1>
-          <ul>
+          <div className="form-controls">
+            <input
+              type="text"
+              className="input"
+              value={textInput}
+              onChange={this.onChangeInputText}
+            />
+            <button
+              type="button"
+              className="add-button"
+              onClick={this.onClickAdd}
+            >
+              Add
+            </button>
+          </div>
+
+          <ul className="todo-item-container">
             {todoDetailsList.map(eachTodo => (
               <TodoItem
                 todoItem={eachTodo}

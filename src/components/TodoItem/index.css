@@ -1,8 +1,15 @@
 /* Write your CSS here */
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .todo-list {
   display: flex;
   flex-direction: row;
-  width: 70%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
 }
@@ -11,6 +18,11 @@
   font-size: 18px;
   color: #000000;
   margin-right: 15px;
+  width: 400px;
+}
+.edit-input {
+  width: 400px;
+  height: 30px;
 }
 .delete-btn {
   background-color: #ffffff;
@@ -25,4 +37,26 @@
   font-weight: 600;
   font-size: 12px;
   outline: none;
+  cursor: pointer;
+  margin-right: 15px;
+}
+.checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 15px;
+}
+.edit-add-button {
+  background-color: #ff8542;
+  border-width: 0px;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 6px;
+  height: 25px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
